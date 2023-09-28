@@ -457,7 +457,7 @@
 ### These rules watch the use of memfd_create
 ### "memfd_create" creates anonymous file and returns a file descriptor to access it
 ### When combined with "fexecve" can be used to stealthily run binaries in memory without touching disk
--a always,exit -F arch=b64 -S memfd_create -F key=anon_file_create
+#-a always,exit -F arch=b64 -S memfd_create -F key=anon_file_create
 
 ## Privilege Abuse
 ### The purpose of this rule is to detect when an admin may be abusing power by looking in user's home dir.
@@ -466,11 +466,11 @@
 # Socket Creations
 # will catch both IPv4 and IPv6
 
--a always,exit -F arch=b32 -S socket -F a0=2  -k network_socket_created
--a always,exit -F arch=b64 -S socket -F a0=2  -k network_socket_created
+#-a always,exit -F arch=b32 -S socket -F a0=2  -k network_socket_created
+#-a always,exit -F arch=b64 -S socket -F a0=2  -k network_socket_created
 
--a always,exit -F arch=b32 -S socket -F a0=10 -k network_socket_created
--a always,exit -F arch=b64 -S socket -F a0=10 -k network_socket_created
+#-a always,exit -F arch=b32 -S socket -F a0=10 -k network_socket_created
+#-a always,exit -F arch=b64 -S socket -F a0=10 -k network_socket_created
 
 # Software Management ---------------------------------------------------------
 
@@ -558,50 +558,50 @@
 -w /usr/bin/egrep -p x -k string_search
 -w /usr/bin/ugrep -p x -k string_search
 ### macOS
--w /usr/local/bin/grep -p x -k string_search
--w /usr/local/bin/egrep -p x -k string_search
--w /usr/local/bin/ugrep -p x -k string_search
+#-w /usr/local/bin/grep -p x -k string_search
+#-w /usr/local/bin/egrep -p x -k string_search
+#-w /usr/local/bin/ugrep -p x -k string_search
 
 ### https://github.com/tmbinc/bgrep
 -w /usr/bin/bgrep -p x -k string_search
 ### macOS
--w /usr/local/bin/bgrep -p x -k string_search
+#-w /usr/local/bin/bgrep -p x -k string_search
 
 ### https://github.com/BurntSushi/ripgrep
 -w /usr/bin/rg -p x -k string_search
 ### macOS
--w /usr/local/bin/rg -p x -k string_search
+#-w /usr/local/bin/rg -p x -k string_search
 
 ### https://github.com/awgn/cgrep
 
 -w /usr/bin/cgrep -p x -k string_search
 ### macOS
--w /usr/local/bin/cgrep -p x -k string_search
+#-w /usr/local/bin/cgrep -p x -k string_search
 
 ### https://github.com/jpr5/ngrep
 -w /usr/bin/ngrep -p x -k string_search
 ### macOS
--w /usr/local/bin/ngrep -p x -k string_search
+#-w /usr/local/bin/ngrep -p x -k string_search
 
 ### https://github.com/vrothberg/vgrep
 -w /usr/bin/vgrep -p x -k string_search
 ### macOS
--w /usr/local/bin/vgrep -p x -k string_search
+#-w /usr/local/bin/vgrep -p x -k string_search
 
 ### https://github.com/monochromegane/the_platinum_searcher
 -w /usr/bin/pt -p x -k string_search
 ### macOS
--w /usr/local/bin/pt -p x -k string_search
+#-w /usr/local/bin/pt -p x -k string_search
 
 ### https://github.com/gvansickle/ucg
 -w /usr/bin/ucg -p x -k string_search
 ### macOS
--w /usr/local/bin/ucg -p x -k string_search
+#-w /usr/local/bin/ucg -p x -k string_search
 
 ### https://github.com/ggreer/the_silver_searcher
 -w /usr/bin/ag -p x -k string_search
 ### macOS
--w /usr/local/bin/ag -p x -k string_search
+#-w /usr/local/bin/ag -p x -k string_search
 
 ### https://github.com/beyondgrep/ack3
 ### https://beyondgrep.com
@@ -609,7 +609,7 @@
 -w /usr/local/bin/ack -p x -k string_search
 -w /usr/bin/semgrep -p x -k string_search
 ### macOS
--w /usr/local/bin/semgrep -p x -k string_search
+#-w /usr/local/bin/semgrep -p x -k string_search
 
 ## Docker
 -w /usr/bin/dockerd -k docker
@@ -634,42 +634,42 @@
 
 #### VirtualBox on macOS
 
--w /usr/local/bin/VirtualBox -p x -k virt_tool
--w /usr/local/bin/VirtualBoxVM -p x -k virt_tool
--w /usr/local/bin/VBoxManage -p x -k virt_tool
--w /usr/local/bin/VBoxVRDP -p x -k virt_tool
--w /usr/local/bin/VBoxHeadless -p x -k virt_tool
--w /usr/local/bin/vboxwebsrv -p x -k virt_tool
--w /usr/local/bin/VBoxBugReport -p x -k virt_tool
--w /usr/local/bin/VBoxBalloonCtrl -p x -k virt_tool
--w /usr/local/bin/VBoxAutostart -p x -k virt_tool
--w /usr/local/bin/VBoxDTrace -p x -k virt_tool
--w /usr/local/bin/vbox-img -p x -k virt_tool
--w /Library/LaunchDaemons/org.virtualbox.startup.plist -p x -k virt_tool
--w /Library/Application Support/VirtualBox/LaunchDaemons/ -p x -k virt_tool
--w /Library/Application Support/VirtualBox/VBoxDrv.kext/ -p x -k virt_tool
--w /Library/Application Support/VirtualBox/VBoxUSB.kext/ -p x -k virt_tool
--w /Library/Application Support/VirtualBox/VBoxNetFlt.kext/ -p x -k virt_tool
--w /Library/Application Support/VirtualBox/VBoxNetAdp.kext/ -p x -k virt_tool
+#-w /usr/local/bin/VirtualBox -p x -k virt_tool
+#-w /usr/local/bin/VirtualBoxVM -p x -k virt_tool
+#-w /usr/local/bin/VBoxManage -p x -k virt_tool
+#-w /usr/local/bin/VBoxVRDP -p x -k virt_tool
+#-w /usr/local/bin/VBoxHeadless -p x -k virt_tool
+#-w /usr/local/bin/vboxwebsrv -p x -k virt_tool
+#-w /usr/local/bin/VBoxBugReport -p x -k virt_tool
+#-w /usr/local/bin/VBoxBalloonCtrl -p x -k virt_tool
+#-w /usr/local/bin/VBoxAutostart -p x -k virt_tool
+#-w /usr/local/bin/VBoxDTrace -p x -k virt_tool
+#-w /usr/local/bin/vbox-img -p x -k virt_tool
+#-w /Library/LaunchDaemons/org.virtualbox.startup.plist -p x -k virt_tool
+#-w /Library/Application Support/VirtualBox/LaunchDaemons/ -p x -k virt_tool
+#-w /Library/Application Support/VirtualBox/VBoxDrv.kext/ -p x -k virt_tool
+#-w /Library/Application Support/VirtualBox/VBoxUSB.kext/ -p x -k virt_tool
+#-w /Library/Application Support/VirtualBox/VBoxNetFlt.kext/ -p x -k virt_tool
+#-w /Library/Application Support/VirtualBox/VBoxNetAdp.kext/ -p x -k virt_tool
 
 ### Parallels Desktop on macOS
 
--w /usr/local/bin/prl_convert -p x -k virt_tool
--w /usr/local/bin/prl_disk_tool -p x -k virt_tool
--w /usr/local/bin/prl_perf_ctl -p x -k virt_tool
--w /usr/local/bin/prlcore2dmp -p x -k virt_tool
--w /usr/local/bin/prlctl -p x -k virt_tool
--w /usr/local/bin/prlexec -p x -k virt_tool
--w /usr/local/bin/prlsrvctl -p x -k virt_tool
--w /Library/Preferences/Parallels -p x -k virt_tool
+#-w /usr/local/bin/prl_convert -p x -k virt_tool
+#-w /usr/local/bin/prl_disk_tool -p x -k virt_tool
+#-w /usr/local/bin/prl_perf_ctl -p x -k virt_tool
+#-w /usr/local/bin/prlcore2dmp -p x -k virt_tool
+#-w /usr/local/bin/prlctl -p x -k virt_tool
+#-w /usr/local/bin/prlexec -p x -k virt_tool
+#-w /usr/local/bin/prlsrvctl -p x -k virt_tool
+#-w /Library/Preferences/Parallels -p x -k virt_tool
 
 ### qemu on macOS
 
--w /usr/local/bin/qemu-edid -p x -k virt_tool
--w /usr/local/bin/qemu-img -p x -k virt_tool
--w /usr/local/bin/qemu-io -p x -k virt_tool
--w /usr/local/bin/qemu-nbd -p x -k virt_tool
--w /usr/local/bin/qemu-system-x86_64 -p x -k virt_tool
+#-w /usr/local/bin/qemu-edid -p x -k virt_tool
+#-w /usr/local/bin/qemu-img -p x -k virt_tool
+#-w /usr/local/bin/qemu-io -p x -k virt_tool
+#-w /usr/local/bin/qemu-nbd -p x -k virt_tool
+#-w /usr/local/bin/qemu-system-x86_64 -p x -k virt_tool
 
 ## Kubelet
 -w /usr/bin/kubelet -k kubelet
@@ -744,6 +744,17 @@
 ### because this might be a sign of someone exploiting a hole in the 32
 ### bit API.
 -a always,exit -F arch=b32 -S all -k 32bit_api
+
+# Sekoia.io specific rules ---------------------------------------------------------------------
+
+## Scripts
+-w /usr/bin/python -p x -k software_mgmt
+-w /usr/bin/python3 -p x -k software_mgmt
+-w /usr/bin/perl -p x -k software_mgmt
+
+## Track new TCP connections
+-a always,exit -F arch=b64 -S connect -k tcp_connections
+-a always,exit -F arch=b32 -S connect -k tcp_connections
 
 # Make The Configuration Immutable --------------------------------------------
 
