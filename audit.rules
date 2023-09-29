@@ -754,7 +754,12 @@
 
 ## Track new TCP connections
 -a always,exit -F arch=b64 -S connect -k tcp_connections
--a always,exit -F arch=b32 -S connect -k tcp_connections
+
+##  Suspicious x86 syscalls
+-a always,exit -S ioperm -S modify_ldt -k suspicious_calls
+
+## Unusual syscalls that should be watched
+-a always,exit -S get_kern
 
 # Make The Configuration Immutable --------------------------------------------
 
