@@ -14,7 +14,6 @@ The Sekoia.io fork adds the following changes to the base rules:
 
 * Disable rules specific to MacOS
 * Do not watch for socket creations
-* Do not watch for Anonymous File Creation
 * Watch for tcp connections
 * Watch for python/perl scripts executions
 
