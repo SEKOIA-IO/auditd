@@ -14,7 +14,11 @@ The Sekoia.io fork adds the following changes to the base rules:
 
 * Disable rules specific to MacOS
 * Watch for tcp connections
+* Do not watch for socket creations
 * Watch for python/perl scripts executions
+* Disable rule about 32 bits exploitation
+* Disable IPC rules
+* Add rule preventing kudu from overwhelming the logs
 
 ## Idea
 
