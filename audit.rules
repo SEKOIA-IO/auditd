@@ -103,6 +103,13 @@
 ## FileBeat
 -a never,exit -F arch=b64 -F path=/opt/filebeat -k filebeat
 
+## SNMP
+-a never,exit -F arch=b64 -S open -F dir=/usr/share/snmp/mibs -F exe=/usr/bin/snmpget -k snmp
+-a never,exit -F arch=b64 -S open -F dir=/usr/share/snmp/mibs -F exe=/usr/bin/snmpwalk -k snmp
+
+## Git
+-a never,exit -F arch=b64 -S unlink -F exe=/usr/bin/git -k git
+
 ## More information on how to filter events
 ### https://access.redhat.com/solutions/2482221
 
