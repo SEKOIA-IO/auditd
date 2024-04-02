@@ -513,7 +513,7 @@
 -a always,exit -F arch=b64 -S ptrace -F a0=0x4 -k code_injection
 -a always,exit -F arch=b64 -S ptrace -F a0=0x5 -k data_injection
 -a always,exit -F arch=b64 -S ptrace -F a0=0x6 -k register_injection
--a always,exit -F arch=b64 -S ptrace -k tracing
+#-a always,exit -F arch=b64 -S ptrace -k tracing
 
 ## Anonymous File Creation
 ### These rules watch the use of memfd_create
