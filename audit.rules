@@ -103,6 +103,13 @@
 ## FileBeat
 -a never,exit -F arch=b64 -F path=/opt/filebeat -k filebeat
 
+## SNMP
+-a never,exit -F arch=b64 -S open -F dir=/usr/share/snmp/mibs -F exe=/usr/bin/snmpget -k snmp
+-a never,exit -F arch=b64 -S open -F dir=/usr/share/snmp/mibs -F exe=/usr/bin/snmpwalk -k snmp
+
+## Git
+-a never,exit -F arch=b64 -S unlink -F exe=/usr/bin/git -k git
+
 ## More information on how to filter events
 ### https://access.redhat.com/solutions/2482221
 
@@ -506,7 +513,7 @@
 -a always,exit -F arch=b64 -S ptrace -F a0=0x4 -k code_injection
 -a always,exit -F arch=b64 -S ptrace -F a0=0x5 -k data_injection
 -a always,exit -F arch=b64 -S ptrace -F a0=0x6 -k register_injection
--a always,exit -F arch=b64 -S ptrace -k tracing
+#-a always,exit -F arch=b64 -S ptrace -k tracing
 
 ## Anonymous File Creation
 ### These rules watch the use of memfd_create
