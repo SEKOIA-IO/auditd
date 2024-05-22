@@ -823,6 +823,9 @@
 ## Unusual syscalls that should be watched
 -a always,exit -S get_kern
 
+# Any process execution/exit
+-a always,exit -F arch=b64 -S execve -S execveat -S exit -S exit_group -k proces_exec
+
 # Make The Configuration Immutable --------------------------------------------
 
 ##-e 2
