@@ -206,6 +206,14 @@
 ### Successful IPv6 Connections
 -a always,exit -F arch=b64 -S connect -F a2=28 -F success=1 -F key=network_connect_6
 
+### EINPROGRESS IPv4 Connections when using non-blocking sockets
+### Sadly we can't know if the connection was successful or not
+-a always,exit -F arch=b64 -S connect -F a2=16 -F exit=-EINPROGRESS -F key=network_connect_in_progress_4
+
+### EINPROGRESS IPv6 Connections when using non-blocking sockets
+### Sadly we can't know if the connection was successful or not
+-a always,exit -F arch=b64 -S connect -F a2=28 -F exit=-EINPROGRESS -F key=network_connect_in_progress_6
+
 ### Changes to other files
 -w /etc/hosts -p wa -k network_modifications
 -w /etc/sysconfig/network -p wa -k network_modifications
