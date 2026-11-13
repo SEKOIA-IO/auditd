@@ -101,10 +101,6 @@
 -a never,exit -F arch=b64 -S fchmodat -S fchownat -S setxattr -S lsetxattr -S removexattr -S lremovexattr -S unlinkat -S renameat -S renameat2 -F dir=/nix/store -F auid>=1000 -F auid!=-1 -k nixstore
 -a never,exit -F arch=b64 -S chmod -S chown -S lchown -S rmdir -S unlink -S rename -F dir=/nix/store -F auid>=1000 -F auid!=-1 -k nixstore
 
-## Deletions in /tmp, the second rule holds the syscalls that only exist on x86_64
--a never,exit -F arch=b64 -S unlinkat -F dir=/tmp -F auid>=1000 -F auid!=-1 -k tmpdelete
--a never,exit -F arch=b64 -S unlink -S rmdir -F dir=/tmp -F auid>=1000 -F auid!=-1 -k tmpdelete
-
 ## FileBeat
 -a never,exit -F arch=b64 -F path=/opt/filebeat -k filebeat
 
